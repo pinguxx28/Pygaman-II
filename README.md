@@ -20,4 +20,7 @@ Pygaman was built in Python3.7.3 and Pygame 2.0.1 (a graphics library for Python
 - Jump with "z"<br>
 - Shoot with "x"<br>
 - (You can customize your keys in keys.py)<br>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 838606fdabc458a6e2b05a89432640acd1324264
