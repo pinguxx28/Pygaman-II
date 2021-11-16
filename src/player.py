@@ -3,6 +3,10 @@ import pygame
 from settings import *
 from math import ceil
 
+import os, sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import keys
+
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos):
         super().__init__()
@@ -70,12 +74,12 @@ class Player(pygame.sprite.Sprite):
         keys = pygame.key.get_pressed() # Get all of the pressed keys
 
         # Set all of the variables based on the pressed keys
-        self.right_pressed = keys[pygame.K_RIGHT] or keys[pygame.K_d]
-        self.left_pressed = keys[pygame.K_LEFT] or keys[pygame.K_a]
+        self.right_pressed = keys[keys.RIGHT]
+        self.left_pressed = keys[keys.LEFT]
 
-        self.jump_pressed = keys[pygame.K_z] or keys[pygame.K_SPACE]
+        self.jump_pressed = keys[keys.JUMP]
 
-        self.shoot_pressed = keys[pygame.K_x]
+        self.shoot_pressed = keys[keys.SHOOT]
 
     def set_dir(self):
         if self.right_pressed: # If we're pressing right
