@@ -117,9 +117,9 @@ class Level:
 
 
 		for enemy in self.enemies.sprites():
-		        shoot = enemy.update()
+			shoot = enemy.update()
 			if shoot and enemy.shooter():
-			        self.enemy_shots.add(EnemyShot(enemy.rect.center, enemy.facing)) # Then shoot a shot/bullet
+				self.enemy_shots.add(EnemyShot(enemy.rect.center, enemy.facing)) # Then shoot a shot/bullet
 
 		self.enemies.update() # Update all of the enemies
 
