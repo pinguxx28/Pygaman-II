@@ -22,7 +22,7 @@ class Enemy(pygame.sprite.Sprite):
         self.shot = False
         # Shoot variables (when self shoot)
         self.shoot_timer = 0
-        self.shoot_interval = randint(600, 900)
+        self.shoot_interval = randint(60, 90)
 
     def shooter(self): 
         # Returns true if self is a shooter
