@@ -116,12 +116,12 @@ class Level:
 		if shot: self.shots.add(Shot(self.player.sprite.rect.center, self.player.sprite.facing.x)) # If the shoot button is pressed, shoot
 
 
-                for enemy in self.enemies.sprites():
-                    shoot = enemy.update()
-                    if shoot and enemy.shooter():
-                        for enemy in self.enemies.sprites(): # Loop through all of the enemies
-                            if enemy.shooter(): # If the enemy is a shooter (can shoot)
-				self.enemy_shots.add(EnemyShot(enemy.rect.center, enemy.facing)) # Then shoot a shot/bullet
+		for enemy in self.enemies.sprites():
+			shoot = enemy.update()
+			if shoot and enemy.shooter():
+				for enemy in self.enemies.sprites(): # Loop through all of the enemies
+					if enemy.shooter(): # If the enemy is a shooter (can shoot)
+						self.enemy_shots.add(EnemyShot(enemy.rect.center, enemy.facing)) # Then shoot a shot/bullet
 
 		self.enemies.update() # Update all of the enemies
 
