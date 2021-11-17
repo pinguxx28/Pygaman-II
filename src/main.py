@@ -16,14 +16,11 @@ clock = pygame.time.Clock() # Make a new clock
 
 level = Level(screen, map_layout) # Set a new level
 
-enemy_shoot_timer = pygame.USEREVENT + 1 # Make a timer for all of the enemies' shots
-pygame.time.set_timer(enemy_shoot_timer, 1200) # Set the timer every 1200ms
 
 running = True
 while running:
     for event in pygame.event.get(): # Loop through all of the event
         if event.type == pygame.QUIT: running = False # check if we've removed the window, if so stop
-        elif event.type == enemy_shoot_timer: level.enemies_shoot() # Check if the event is the event we made on line 19 if so shoot
     
     level.run() # run the level
 

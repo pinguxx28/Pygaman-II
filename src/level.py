@@ -74,11 +74,6 @@ class Level:
 					player.rect.top = block.rect.bottom
 					player.direction.y = 0
 
-	def enemies_shoot(self):
-		for enemy in self.enemies.sprites(): # Loop through all of the enemies
-			if enemy.shooter(): # If the enemy is a shooter (can shoot)
-				self.enemy_shots.add(EnemyShot(enemy.rect.center, enemy.facing)) # Then shoot a shot/bullet
-
 	def player_dead(self):
 		self.make_level(self.map_layout) # Reset the game
 	
@@ -120,6 +115,13 @@ class Level:
 		shot = self.player.sprite.update() # update the player and return the player's "can shoot status"
 		if shot: self.shots.add(Shot(self.player.sprite.rect.center, self.player.sprite.facing.x)) # If the shoot button is pressed, shoot
 
+
+                for enemy in self.enemies.sprites():
+                    shoot = enemy.update()
+                    if shoot and enemy.shooter():
+                        for enemy in self.enemies.sprites(): # Loop through all of the enemies
+                            if enemy.shooter(): # If the enemy is a shooter (can shoot)
+				self.enemy_shots.add(EnemyShot(enemy.rect.center, enemy.facing)) # Then shoot a shot/bullet
 
 		self.enemies.update() # Update all of the enemies
 

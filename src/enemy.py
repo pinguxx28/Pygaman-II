@@ -1,6 +1,7 @@
 import pygame
 
 from settings import *
+from random import randint
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, pos, enemy_type):
@@ -16,9 +17,12 @@ class Enemy(pygame.sprite.Sprite):
         self.facing = self.get_facing()
         # Set the health
         self.health = 3
-        # Shot variables
+        # Shot variables (when self got shot)
         self.shot_timer = 0
         self.shot = False
+        # Shoot variables (when self shoot)
+        self.shoot_timer = 0
+        self.shoot_interval = randint(600, 900)
 
     def shooter(self): 
         # Returns true if self is a shooter
@@ -58,7 +62,17 @@ class Enemy(pygame.sprite.Sprite):
                 self.shot_timer = 0
                 self.shot = False
 
+    def manage_shoot(self):
+        self.shoot_timer += 1 # Increase the shoot timer
+        if self.shoot_timer > self.shoot_interval:
+            self.shoot_timer = 0
+            self.shoot_interval = randint(600, 900) # Set the shoot interval to a random number between 1s and 1.5s
+            return True
+        return False
+
     def update(self):
         self.manage_shot()
-
+        
         if self.health <= 0: self.kill() # kill if dead
+        return self.manage_shot()
+        
