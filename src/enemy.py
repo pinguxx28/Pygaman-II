@@ -74,5 +74,5 @@ class Enemy(pygame.sprite.Sprite):
         self.manage_shot()
         
         if self.health <= 0: self.kill() # kill if dead
-        return self.manage_shot()
+        return self.manage_shoot()
         
