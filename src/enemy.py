@@ -22,7 +22,7 @@ class Enemy(pygame.sprite.Sprite):
         self.shot = False
         # Shoot variables (when self shoot)
         self.shoot_timer = 0
-        self.shoot_interval = randint(60, 90)
+        self.shoot_interval = randint(30, 45)
 
     def shooter(self): 
         # Returns true if self is a shooter
@@ -66,7 +66,7 @@ class Enemy(pygame.sprite.Sprite):
         self.shoot_timer += 1 # Increase the shoot timer
         if self.shoot_timer > self.shoot_interval:
             self.shoot_timer = 0
-            self.shoot_interval = randint(60, 90) # Set the shoot interval to a random number between 1s and 1.5s
+            self.shoot_interval = randint(30, 45) # Set the shoot interval to a random number between 1s and 1.5s
             return True
         return False
 
