@@ -119,9 +119,9 @@ class Player(pygame.sprite.Sprite):
 		if scrollable:
 			# If the level is scrollable
 			# Check if the player is near an edge and if he's moving towards it
-			if self.rect.right >= screen_width * 0.6 and self.direction.x > 0 and outside[1]:
+			if self.rect.right >= screen_width * 0.65 and self.direction.x > 0 and outside[1]:
 				level_scroll = -round(self.direction.x)
-			elif self.rect.left <= screen_width * 0.4 and self.direction.x < 0 and outside[0]:
+			elif self.rect.left <= screen_width * 0.35 and self.direction.x < 0 and outside[0]:
 				level_scroll = -round(self.direction.x)
 			else:
 				self.rect.x += round(self.direction.x) # Increase our current position by a round number
