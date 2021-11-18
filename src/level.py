@@ -10,11 +10,13 @@ from enemy_shot import EnemyShot
 from settings import *
 
 class Level:
-	def __init__(self, screen, layout):
+	def __init__(self, screen, layout, scrollable):
 		self.screen = screen
 
 		self.map_layout = layout
 		self.make_level(layout) # make the level
+
+		self.scrollable = scrollable
 
 	def make_level(self, layout):
 		# Make all of the groups
@@ -104,7 +106,7 @@ class Level:
 
 		# Move and update the player
 		# Check the x first then the y
-		self.player.sprite.update_x()
+		self.player.sprite.update_x(self.scrollable)
 		self.player_coll_x()
 		self.player.sprite.update_y()
 		self.player_coll_y()

@@ -14,18 +14,18 @@ screen = pygame.display.set_mode((screen_width, screen_height)) # Make the scree
 pygame.display.set_caption("Pygaman II") # Set the caption
 clock = pygame.time.Clock() # Make a new clock
 
-level = Level(screen, map_layout) # Set a new level
+level = Level(screen, map_layout, scroll) # Set a new level
 
 
 running = True
 while running:
-    for event in pygame.event.get(): # Loop through all of the event
-        if event.type == pygame.QUIT: running = False # check if we've removed the window, if so stop
-    
-    level.run() # run the level
+	for event in pygame.event.get(): # Loop through all of the event
+		if event.type == pygame.QUIT: running = False # check if we've removed the window, if so stop
+	
+	level.run() # run the level
 
-    pygame.display.update() # Update the display
-    clock.tick(30) # Make the game run at max 30 fps (frames per second)
+	pygame.display.update() # Update the display
+	clock.tick(30) # Make the game run at max 30 fps (frames per second)
 
 # quit
 pygame.quit()
