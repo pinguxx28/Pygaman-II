@@ -41,6 +41,7 @@ class Player(pygame.sprite.Sprite):
         # Sound variables
         self.jump_sound = pygame.mixer.Sound('audio/jump.wav') # Load a jump sound
         self.gun_shot_sound = pygame.mixer.Sound('audio/gun_shot.wav') # Load a shot sound
+        self.gun_shot_sound.set_volume(0.1)
 
     def set_image(self, animation_name, anim_frame, flip):
         anim_frame = ceil(anim_frame) # Round up the animation frame
