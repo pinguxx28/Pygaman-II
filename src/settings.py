@@ -8,12 +8,12 @@ screen_height = tile_size * tiles_y
 
 map_layout = (
 	'                                                                                                             ',
-	'                        p                                                                                    ',
-	'                   XXXXXXXXXXXXX                                                                   q         ',
+	'                        p                                                     p                              ',
+	'                   XXXXXXXXXXXXX                                            XXXXXX                 q         ',
 	'                                                                                             XXXXXXXXXXXX    ',
 	'                                       q                                                                     ',
-	'                                  XXXXXXXXXXXX                                    q                          ',
-	'                    p                                                        XXXXXXXXXXXX                    ',
+	'                                  XXXXXXXXXXXX               q                    q                          ',
+	'                    p                                      XXXXX             XXXXXXXXXXXX                    ',
 	'               XXXXXXXXXXXX                                                                                  ',
 	'                                                                                                         q   ',
 	'                                          XXXXXXXXXXXXXXXXXXXXXX                                  XXXXXXXXXXX',

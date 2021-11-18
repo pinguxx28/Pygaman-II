@@ -18,7 +18,8 @@ class EnemyShot(pygame.sprite.Sprite):
 		canvas = (0, 0, screen_width, screen_height) # Make a canvas rect
 		if not self.rect.colliderect(canvas): self.kill() # Kill self if not inside canvas
 
-	def update(self):
+	def update(self, level_scroll):
 		self.check_outside() # Check if self is outside
 
+		self.rect.x += level_scroll # scroll self
 		self.rect.x += self.shot_dir * self.speed # Move self

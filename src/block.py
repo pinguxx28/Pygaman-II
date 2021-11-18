@@ -10,3 +10,6 @@ class Block(pygame.sprite.Sprite):
 		self.image.fill('Black')
 		# Get the rect
 		self.rect = self.image.get_rect(topleft = pos)
+	
+	def update(self, level_scroll):
+		self.rect.x += level_scroll

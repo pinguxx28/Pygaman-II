@@ -17,6 +17,7 @@ class Level:
 		self.make_level(layout) # make the level
 
 		self.scrollable = scrollable
+		self.level_scroll = 0
 
 	def make_level(self, layout):
 		# Make all of the groups
@@ -106,7 +107,14 @@ class Level:
 
 		# Move and update the player
 		# Check the x first then the y
-		self.player.sprite.update_x(self.scrollable)
+		block_outside_left = False
+		block_outside_right = False
+
+		for block in self.blocks.sprites():
+			if block.rect.right <= 0 and not block_outside_left: block_outside_left = True
+			elif block.rect.left >= screen_width and not block_outside_right: block_outside_right = True
+
+		self.level_scroll = self.player.sprite.update_x(self.scrollable, (block_outside_left, block_outside_right))
 		self.player_coll_x()
 		self.player.sprite.update_y()
 		self.player_coll_y()
@@ -120,13 +128,13 @@ class Level:
 
 		for enemy in self.enemies.sprites():
 			shoot = enemy.update()
+			enemy.scroll(self.level_scroll)
 			if shoot and enemy.shooter():
 				self.enemy_shots.add(EnemyShot(enemy.rect.center, enemy.facing)) # Then shoot a shot/bullet
 
-		self.enemies.update() # Update all of the enemies
-
-		self.shots.update(self.enemies) # Update the player shots
-		self.enemy_shots.update() # Update the enemy shots
+		self.shots.update(self.enemies, self.level_scroll) # Update the player shots
+		self.enemy_shots.update(self.level_scroll) # Update the enemy shots
+		self.blocks.update(self.level_scroll) # Update the blocks
 
 		if self.player.sprite.health <= 0: self.make_level(self.map_layout) # Check if the player's health is below or equal to 0
 		#==================

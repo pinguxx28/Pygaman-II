@@ -24,9 +24,10 @@ class Shot(pygame.sprite.Sprite):
 		canvas = (0, 0, screen_width, screen_height) # Make a canvas rect
 		if not self.rect.colliderect(canvas): self.kill() # Kill self if not inside canvas
 
-	def update(self, enemies):
+	def update(self, enemies, level_scroll):
 		self.check_outside() # Call the function
 
+		self.rect.x += level_scroll # scroll self
 		self.rect.x += self.speed * self.dir # Move the shot
 
 		for enemy in enemies.sprites(): # Loop through all of the enemies

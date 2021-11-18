@@ -70,8 +70,12 @@ class Enemy(pygame.sprite.Sprite):
 			return True
 		return False
 
+	def scroll(self, level_scroll):
+		self.rect.x += level_scroll # scroll self
+
 	def update(self):
 		self.manage_shot()
+
 		
 		if self.health <= 0: self.kill() # kill if dead
 		return self.manage_shoot()

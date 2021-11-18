@@ -84,12 +84,12 @@ class Player(pygame.sprite.Sprite):
 	def set_dir(self):
 		if self.right_pressed: # If we're pressing right
 			self.set_image('running', self.anim_frame, False) # Display the animation frame
-			self.direction.x += 2 # Set the direction (it is actually the speed but oh well)
+			self.direction.x += 1.5 # Set the direction (it is actually the speed but oh well)
 			self.facing.x = 1 # Set the direction the player is facing in
 
 		if self.left_pressed: # If we're pressing left
 			self.set_image('running', self.anim_frame, True) # Display the animte frame
-			self.direction.x -= 2 # Set the direction (it is actually the speed but oh well)
+			self.direction.x -= 1.5 # Set the direction (it is actually the speed but oh well)
 			self.facing.x = -1 # Set the direction the player is facing in
 
 		if not (self.left_pressed or self.right_pressed): # If we're not pressing a directional key
@@ -113,16 +113,29 @@ class Player(pygame.sprite.Sprite):
 
 		self.direction.y += 2.8 # Gravity
 
-	def update_x(self, srollable):
-		# Pygame automatically rounds down our numbers so that means if we're sliding to the left and loosing our speed
-		# we're never going to go higher than -1
-		self.rect.x += round(self.direction.x) # Increase our current position by a round number
+	def update_x(self, scrollable, outside):
+		level_scroll = 0
+		# Check if the level is scrollable
+		if scrollable:
+			# If the level is scrollable
+			# Check if the player is near an edge and if he's moving towards it
+			if self.rect.right >= screen_width * 0.6 and self.direction.x > 0 and outside[1]:
+				level_scroll = -round(self.direction.x)
+			elif self.rect.left <= screen_width * 0.4 and self.direction.x < 0 and outside[0]:
+				level_scroll = -round(self.direction.x)
+			else:
+				self.rect.x += round(self.direction.x) # Increase our current position by a round number
+		else:
+			# If not just do the default
+			self.rect.x += round(self.direction.x) # Increase our current position by a round number
 
 		if self.state == 'punched': # If we were just punched
 			self.rect.x += (7 - self.invincible_timer / 3) * self.shot_dir # Move the player back in a smooth punch animation
 
 		# friction
 		self.direction.x *= 0.8
+
+		return level_scroll
 
 	def update_y(self):
 		self.rect.y += self.direction.y # Move on the y axis
