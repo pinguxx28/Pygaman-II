@@ -192,12 +192,17 @@ class Player(pygame.sprite.Sprite):
 				self.faced_when_shot = 0
 				self.health_after_shot = 0
 
+	def check_inside_bounds_x(self):
+		if self.rect.right > screen_width: self.rect.right = screen_width
+		if self.rect.left < 0: self.rect.left = 0
+
 	def update(self):
 		# Call all of the functions
 		self.get_pressed()
 		self.set_dir()
 		self.max_y_vel()
 		self.handle_shot()
+		self.check_inside_bounds_x()
 
 		# Increase our current animation frame
 		self.anim_frame += 0.2
